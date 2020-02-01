@@ -1,12 +1,7 @@
 ![OpenPods Logo](fastlane/metadata/android/en-US/images/featureGraphic.png)
 
 # OpenPods
-The Free and Open Source app for monitoring your AirPods on Android
-
-## Download
-<a href="https://f-droid.org/packages/com.dosse.airpods"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="80"></a>
-
-[Download APK](https://downloads.fdossena.com/geth.php?r=openpods-apk)
+The Free and Open Source app for monitoring your i9000 TWS on Android
 
 ## Features
 * Shows a notification with AirPods status when they are connected
@@ -14,9 +9,7 @@ The Free and Open Source app for monitoring your AirPods on Android
 * Free and Open Source software
 
 ## Supported devices
-* Apple AirPods 1st gen
-* Apple AirPods 2nd gen
-* Apple AirPods Pro
+* i9000 TWS
 
 ## DO NOT REUPLOAD TO GOOGLE PLAY
 **This app violates Google Play policies and is designed to break if you try to fix that unless you really know what you're doing.** You have been warned. I do NOT want this app to be on Google Play.
@@ -27,10 +20,10 @@ I had to do this because several people were redistributing modified proprietary
 [Donate with PayPal](https://www.paypal.me/sineisochronic)
 
 ## Screenshots
-![Screenshot: notification](fastlane/metadata/android/en-US/images/phoneScreenshots/screen1.png)  
-![Screenshot: notification](fastlane/metadata/android/en-US/images/phoneScreenshots/screen2.png)  
-![Screenshot: permissions](fastlane/metadata/android/en-US/images/phoneScreenshots/screen3.png)
-![Screenshot: main app](fastlane/metadata/android/en-US/images/phoneScreenshots/screen4.png)
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen1.png" height="150px">  
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen2.png" height="150px">  
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen3.png" height="150px">
+<img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen4.png" height="150px">
 
 ## License
 Copyright (C) 2019 Federico Dossena
