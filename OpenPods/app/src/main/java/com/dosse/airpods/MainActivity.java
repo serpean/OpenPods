@@ -1,61 +1,85 @@
 package com.dosse.airpods;
 
 import android.Manifest;
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.os.PowerManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
+
+    private static final int MY_PERMISSIONS_REQUEST_COARSE_LOCATION = 1;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(final Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //check if Bluetooth LE is available on this device. If not, show an error
-        BluetoothAdapter btAdapter=((BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE)).getAdapter();
-        if(btAdapter==null||(btAdapter.isEnabled()&&btAdapter.getBluetoothLeScanner()==null)){
-            Intent i=new Intent(this,NoBTActivity.class);
-            startActivity(i);
-            finish();
-            return;
+
+        if (checkBluetoothLE()) {
+            showNoBTActivity();
+        } else {
+            requestPermissions();
+            declareButtons();
         }
-        //check if all permissions have been granted
-        boolean ok=true;
-        try {
-            if (!getSystemService(PowerManager.class).isIgnoringBatteryOptimizations(getPackageName())) ok = false;
-        }catch(Throwable t){}
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) ok=false;
-        if(ok){
+    }
+
+    private void showNoBTActivity() {
+
+        final Intent noBTActivity = new Intent(this, NoBTActivity.class);
+        startActivity(noBTActivity);
+        finish();
+    }
+
+    private boolean checkBluetoothLE() {
+        final BluetoothAdapter btAdapter = ((BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE)).getAdapter();
+        return btAdapter == null || (btAdapter.isEnabled() && btAdapter.getBluetoothLeScanner() == null);
+    }
+
+    private void requestPermissions() {
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_CONTACTS},
+                    MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
+        } else {
             Starter.startPodsService(getApplicationContext());
-        }else{
-            Intent i=new Intent(this,IntroActivity.class);
-            startActivity(i);
-            finish();
         }
-        ((Button)(findViewById(R.id.settings))).setOnClickListener(new View.OnClickListener() {
+    }
+
+    private void declareButtons() {
+
+        findViewById(R.id.settings).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) { //settings clicked
-                Intent i=new Intent(MainActivity.this, SettingsActivity.class);
+            public void onClick(final View view) {
+                final Intent i = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(i);
             }
         });
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        try{
-            getApplicationContext().openFileInput("hidden").close();
-            finish();
-        }catch (Throwable t){}
+    public void onRequestPermissionsResult(final int requestCode, final String[] permissions, final int[] grantResults) {
+
+        if (requestCode == MY_PERMISSIONS_REQUEST_COARSE_LOCATION) {
+            if (grantResults.length > 0
+                    && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                Starter.startPodsService(getApplicationContext());
+
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.ACCESS_COARSE_LOCATION},
+                        MY_PERMISSIONS_REQUEST_COARSE_LOCATION);
+            }
+        }
+
     }
+
 }
