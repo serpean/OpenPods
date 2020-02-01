@@ -16,26 +16,6 @@ The Free and Open Source app for monitoring your i9000 TWS on Android
 
 I had to do this because several people were redistributing modified proprietary versions of this app on Google Play in violation of the GNU GPLv3 license.
 
-## Donate
-[Donate with PayPal](https://www.paypal.me/sineisochronic)
 
 ## Screenshots
 <img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen1.png" height="250px"><img src="fastlane/metadata/android/en-US/images/phoneScreenshots/screen2.png" height="250px">
-
-## License
-Copyright (C) 2019 Federico Dossena
-
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-AirPods is a trademark of Apple inc.
